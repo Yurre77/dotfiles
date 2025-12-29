@@ -1,0 +1,198 @@
+{
+    "layer": "top",
+    "position": "top",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "ipc": false,
+    "reload_style_on_change": true,
+    "height": 35,
+    "spacing": 4,
+    "modules-left": [
+	"custom/power",
+	"clock",
+	"custom/media"
+    ],
+    "modules-center": [
+        "ext/workspaces",
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "backlight",
+	"battery",
+        "custom/notification",
+    ],
+    "ext/workspaces": {
+      "format": "{icon}",
+      "sort-by-id": true,
+      "on-click": "activate",
+      "format-icons": {
+		"active": "",
+		"default": "",
+		"urgent": ""
+	}
+    },
+    "dwl/window": {
+        "format": "{}"
+    },
+    "custom/notification": {
+    	"tooltip": false,
+    	"format": "{icon}",
+    	"format-icons": {
+      		"notification": "󰂚",
+      		"none": "",
+      		"dnd-notification": "󰺁",
+      		"dnd-none": ""
+	    },
+    	"return-type": "json",
+    	"exec-if": "which swaync-client",
+    	"exec": "swaync-client -swb",
+    	"on-click": "swaync-client -t -sw",
+    	"on-click-right": "swaync-client -d -sw",
+	"escape": true
+    },
+    "custom/updates": {
+        "format": "󰚰 {}",
+        "interval": 300,                     // every 5 min
+        "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",       // # of updates and tooltip details
+        "exec-if": "exit 0",                  // always run; consider advanced run conditions
+        "on-click": "kitty -e yay -Syu", // update system
+        "signal": 8
+    },
+    "keyboard-state": {
+        "numlock": false,
+        "scrolllock": false,
+        "capslock": true,
+        "format": "{icon}",
+        "format-icons": {
+            "locked": "Capslock",
+            "unlocked": ""
+        }
+    },
+    "cpu": {
+      "interval": 2,
+      "format": " {load}%"
+    },
+    "temperature": {
+      "thermal-zone": 2,
+      "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+      "critical-threshold": 10,
+      "format-critical": " {temperatureC}°C",
+      "format": ""
+    },
+    "wlr/taskbar": {
+      "format": "{icon}",
+      "icon-size": 22,
+      "all-outputs": false,
+      "tooltip-format": "{title}",
+      "markup": true,
+      "on-click": "activate",
+      "on-click-right": "close",
+      "ignore-list": ["Rofi", "wofi"]
+    },
+    "backlight": {
+      "interval": 2,
+      "device": "amdgpu_bl0",
+      "format": "{percent}% {icon}",
+      "format-icons": ["", "", "", "", "", "", "", "", ""],
+      "on-scroll-up": "brightnessctl set +1%",
+      "on-scroll-down": "brightnessctl set 1%-",
+      "smooth-scrolling-threshold": 1
+    },
+    "idle_inhibitor": {
+        "tooltip": false,
+        "format": "{icon}",
+        "start-activated": false,
+        "format-icons": {
+            "activated": " ",
+            "deactivated": " "
+        }
+    },
+    "tray": {
+      "interval": 1,
+      "icon-size": 21,
+      "spacing": 10
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{signalStrength}% ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+	"on-click": "kitty -e nmtui"
+    },
+    "bluetooth": {
+	// "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+	"format": " {status}",
+	"format-disabled": "", // an empty format will hide the module
+	"format-connected": " {num_connections}",
+	"tooltip-format": "{controller_alias}\t{controller_address}",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    },
+    "clock": {
+      "format": "{:%H:%M} ",
+      "format-alt": "{:%A, %d. %b  %H:%M} ",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "calendar": {
+        "mode": "year",
+        "mode-mon-col": 3,
+        "weeks-pos": "right",
+        "on-scroll": 1,
+        "format": {
+          "months": "<span color='#ffead3'><b>{}</b></span>",
+          "days": "<span color='#ecc6d9'><b>{}</b></span>",
+          "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+          "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+          "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+        }
+      }
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "  {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "wlogout -b 6 --protocol layer-shell",
+    },
+    "battery": {
+        "states": {
+                   "warning": 30,
+                   "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25
+    },
+    "custom/media": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "python $HOME/.config/mango/waybar/custom/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    }
+}

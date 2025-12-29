@@ -1,0 +1,165 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: "RobotoMono Nerd Font Propo", "Noto Nerd Font Propo";
+    font-size: 16px;
+}
+
+.modules-left {
+	background-color: #282828;
+	padding: 3px 8px;
+	border: 2px solid #32302f;
+	border-radius: 0px 10px 10px;
+}
+
+.modules-right {
+	background-color: #282828;
+	padding: 3px 8px;
+	border: 2px solid #32302f;
+	border-radius: 10px 0px 10px 10px;
+}
+
+.modules-center {
+	background-color: #282828;
+	padding: 3px 0px;
+	border: 2px solid #32302f;
+	border-radius: 10px
+}
+
+window#waybar {
+    background-color: rgba(40,40,40,0.5);
+    color: #d4be98;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+#window {
+	color: #d4be98;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    color: #7c6f64;
+}
+
+/* you can set a style on hover for any module like this */
+#pulseaudio:hover {
+    color: #7c6f64;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+}
+
+#workspaces button:hover {
+    color: #7c6f64
+}
+
+#workspaces button.urgent {
+    color: #eb4d4b;
+}
+
+#workspaces {
+    margin: 0 3px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 5px;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 5px;
+}
+
+#clock {
+    color: #d3869b;
+    padding: 0 5px;
+}
+
+#battery {
+    background-color: #282828;
+    color: #d4be98;
+    padding: 0 5px;
+}
+
+#battery.charging, #battery.plugged {
+    color: #a9b665;
+    background-color: #282828;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ea6962;
+        color: #282828;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: #282828;
+    color: #ea6962;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#network {
+	color: #7daea3;
+    	background-color: #282828;
+	padding: 0 5px;
+}
+
+#network.disconnected {
+    color: #ea6962;
+}
+
+#pulseaudio {
+    background-color: #282828;
+    color: #d8a657;
+}
+
+#pulseaudio.muted {
+    background-color: #282828;
+    color: #ea6962;
+}
+
+#custom-media {
+    color: #a9b665;
+}
+
+#custom-media.custom-spotify {
+    color: #a9b665;
+}
+
+#custom-media.custom-vlc {
+    color: #e78a4e;
+}
+
+#custom-notification {
+    color: #ddc7a1;
+}
+
+#custom-notification.notification {
+    color: #d8a657;
+}
