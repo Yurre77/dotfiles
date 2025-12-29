@@ -1,0 +1,4 @@
+## Dependencies
+
+- MangoWC
+- Waybar
