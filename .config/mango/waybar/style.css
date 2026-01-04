@@ -34,7 +34,7 @@ window#waybar {
 #workspaces button.urgent:hover,
 #workspaces button.hidden:hover{
     color: #89b482;
-    padding-top: 4px;
+    padding-top: 6px;
     border-top: 2px solid #89b482;
 }
 
@@ -160,11 +160,60 @@ window#waybar {
 #backlight {
     color: #282828;
     background-color: #a9b665;
+    border-radius: 4px;
+    padding-left: 2px;
+    padding-right: 5px;
+    margin-right: 4px;
+}
+
+#backlight:hover {
+    color: #a9b665;
+    background-color: #3b4439;
 }
 
 #battery {
     color: #282828;
     background-color: #89b482;
+    border-radius: 4px;
+    padding-left: 2px;
+    padding-right: 1px;
+    margin-right: 4px;
+}
+
+#battery:hover {
+    color: #89b482;
+    background-color: #3b4439;
+}
+
+#battery.warning {
+    color: #d4be98;
+    background-color: #e78a4e;
+    border-radius: 4px;
+    padding-left: 2px;
+    padding-right: 1px;
+    margin-right: 4px;
+}
+
+#battery.warning:hover {
+    color: #e78a4e;
+    background-color: #4f422e;
+}
+
+@keyframes blink {
+    to {
+        background-color: #282828;
+        color: #ea6962
+    }
+}
+
+#battery.critical:not(.charging) {
+    color: #282828;
+    background: #ea6962;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #bluetooth {
