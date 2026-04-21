@@ -41,7 +41,7 @@ alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
 if [ "`id -u`" -eq 0 ]; then
 	PS1="[${RED}\u${RESET}@${CYAN}\H${RESET}] ${BLUE}󰉋 \w${MAGENTA}\$(__git_ps1 ' ( %s)') \n${RESET}${BOLD}>${RESET} "
 else
-	PS1="[${GREEN}\u${RESET}@${CYAN}\H${RESET}] ${BLUE}󰉋 \w${MAGENTA}\$(__git_ps1 ' (%s  )') \n${RESET}${BOLD}>${RESET} "
+	PS1="[${GREEN}\u${RESET}@${CYAN}\H${RESET}] ${BLUE}󰉋 \w${MAGENTA}\$(__git_ps1 ' ( %s)') \n${RESET}${BOLD}>${RESET} "
 fi
 
 # Misc. commands
