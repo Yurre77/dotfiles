@@ -1,44 +1,24 @@
 import QtQuick
 import Quickshell
-import Quickshell.Widgets
 
-WrapperRectangle {
+Rectangle {
     id: clock
     property color backgroundColor: '#7c6f64'
     property color textColor: '#d4be98'
+    property int margin: 5
+    property int radiusPixels: 5
 
     color: backgroundColor
-    anchors.centerIn: parent
-    margin: 5
-    radius: 5
+    width: text.width + margin
+    height: text.height + margin
+    radius: radiusPixels
 
     Text {
+        id: text
         color: clock.textColor
         text: Time.time
         font.pixelSize: 16
         font.family: 'Maple Mono NF'
-
-        MouseArea {
-            id: ma
-            hoverEnabled: true
-            anchors.fill: parent
-        }
-    }
-
-    PopupWindow {
-        id: popup
-        anchor.item: clock
-        anchor.rect.x: - width / 2 + clock.width / 2
-        anchor.rect.y: clock.height
-        height: 500
-        width: 500
-        visible: ma.containsMouse || popupMa.containsMouse
-        color: clock.backgroundColor
-
-        MouseArea {
-            id: popupMa
-            hoverEnabled: true
-            anchors.fill: parent
-        }
+        anchors.centerIn: parent
     }
 }
