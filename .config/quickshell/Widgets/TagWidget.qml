@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 import "../Singletons"
 
@@ -9,27 +10,26 @@ Rectangle {
     color: '#7c6f64'
     width: text.width
     height: 30
-    property var tags: DwlService.getActiveTags(monitorID)
-    function temp() {
-        console.log(DwlService.getActiveTags(monitorID))
-    }
-
-    Component.onCompleted: temp()
+    readonly property var tags: MangoService.getOutputMonitorState(monitorID)?.tags
 
     RowLayout {
         id: text
         spacing: 0
         Repeater {
             model: 9
-            Rectangle {
+            Button {
                 id: r
                 required property int index
-                height: 2
-                width: t.width
-                Text {
+                onClicked: {}
+
+                contentItem: Text {
                     id: t
                     text: r.index + 1
                     font.pixelSize: 16
+                    color: r.hovered ? 'blue' : 'black'
+                }
+                background: Rectangle {
+                    height:  2
                 }
             }
         }

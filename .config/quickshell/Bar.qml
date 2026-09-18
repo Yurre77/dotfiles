@@ -25,8 +25,8 @@ Scope {
             anchors.fill: parent
 
 
-            TagWidget { monitorID: bar.modelData.name }
             LayoutWidget { monitorID: bar.modelData.name }
+            TagWidget { monitorID: bar.modelData.name }
             ClockWidget {}
         }
     }
