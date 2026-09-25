@@ -9,6 +9,8 @@ Singleton {
 
     property var output: ({})
 
+    Process { id: process }
+
     Process {
         id: monitorStateProcess
         command: ["mmsg", "get", "all-monitors"]
@@ -32,6 +34,10 @@ Singleton {
         refreshTimer.restart()
         let temp = output.monitors?.find(monitor => monitor.name === monitorId) || null
         return temp
+    }
+
+    function changeTag(tagIndex: number): void {
+        process.exec(['mmsg', "dispatch", `view,${tagIndex}`])
     }
 
     Timer {
