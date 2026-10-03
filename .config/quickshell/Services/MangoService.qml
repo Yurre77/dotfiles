@@ -16,7 +16,7 @@ Singleton {
         command: ["mmsg", "get", "all-monitors"]
         running: true
 
-        property var lineBuffer: {}
+        property var lineBuffer: ({})
 
         stdout: StdioCollector {
             onStreamFinished: root.output = JSON.parse(this.text)
@@ -36,7 +36,7 @@ Singleton {
         return temp
     }
 
-    function changeTag(tagIndex: number): void {
+    function changeTag(tagIndex: int) {
         process.exec(['mmsg', "dispatch", `view,${tagIndex}`])
     }
 

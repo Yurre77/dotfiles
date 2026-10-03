@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "../Singletons"
+import "../Services"
 
 Rectangle {
     id: root
@@ -10,7 +10,7 @@ Rectangle {
     color: 'transparent'
     width: text.width
     height: 30
-    readonly property var tags: MangoService.getOutputMonitorState(monitorID)?.tags
+    readonly property var tags: MangoService.getOutputMonitorState(monitorID)?.tags ?? []
 
     RowLayout {
         id: text
@@ -26,11 +26,11 @@ Rectangle {
                     id: t
                     text: r.index + 1
                     font.pixelSize: 16
-                    color: r.hovered ? '#7daea3' : tags[r.index].client_count > 0 ? '#d4be98' : '#7c6f64'
+                    color: r.hovered ? '#7daea3' : tags[r.index]?.client_count > 0 ? '#d4be98' : '#7c6f64'
                 }
                 background: Rectangle {
                     height:  2
-                    color: '#7c6f64'
+                    color: r.hovered ? '#7daea3' : tags[r.index]?.client_count > 0 ? '#d4be98' : 'transparent'
                 }
             }
         }

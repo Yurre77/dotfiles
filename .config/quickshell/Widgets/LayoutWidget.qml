@@ -1,7 +1,7 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import "../Singletons"
+import "../Services"
 
 Rectangle {
     id: layoutblock
