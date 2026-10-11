@@ -1,18 +1,19 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 
-Item {
+Pane {
     id: root
-    property alias children: content.children
-    property alias spacing: content.spacing
-    
-    Rectangle {
 
+    property alias cs: layout.spacing
+    property alias bg: bg.color
+    padding: 0
+
+    background: Rectangle {
+        id: bg
     }
 
-    height: 30
-    width: 500
-    RowLayout {
-        id: content
+    contentItem: RowLayout {
+        id: layout
     }
 }

@@ -2,12 +2,13 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import "../Services"
+import "../"
 
 Rectangle {
     id: layoutblock
 
-    property color backgroundColor: '#7c6f64'
-    property color textColor: '#d4be98'
+    property color backgroundColor: Colors.bg
+    property color textColor: Colors.fg
     property int margin: 5
     property int radiusPixels: 5
 

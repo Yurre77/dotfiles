@@ -25,6 +25,8 @@ Scope {
                 anchors.fill: parent
 
                 Group {
+                    id: tagInfo
+                    bg: Colors.bg
                     TagWidget { monitorID: bar.modelData.name }
                     LayoutWidget { monitorID: bar.modelData.name }
                 }
