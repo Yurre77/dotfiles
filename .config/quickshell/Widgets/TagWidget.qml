@@ -28,7 +28,7 @@ Rectangle {
                     id: t
                     text: r.index + 1
                     font.pixelSize: 16
-                    color: r.hovered ? Colors.aqua : root.tags[r.index]?.client_count > 0 ? Colors.fg : Colors.dim
+                    color: r.hovered ? Colors.aqua : (root.tags[r.index]?.client_count > 0 || root.activeTag === r.index) ? Colors.fg : Colors.dim
                 }
                 background: Rectangle {
                     height:  2

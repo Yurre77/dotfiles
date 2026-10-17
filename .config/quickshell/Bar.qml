@@ -1,4 +1,5 @@
 import Quickshell
+import QtQuick
 import QtQuick.Layouts
 import "Widgets"
 import "Components"
@@ -13,7 +14,7 @@ Scope {
             required property var modelData
             screen: modelData
             implicitHeight: 30
-            color: "transparent"
+            color: Colors.bg
 
             anchors {
                 top: true
@@ -24,13 +25,16 @@ Scope {
             RowLayout {
                 anchors.fill: parent
 
+                ClockWidget {}
                 Group {
                     id: tagInfo
-                    bg: Colors.bg
+                    bg: "transparent"
                     TagWidget { monitorID: bar.modelData.name }
                     LayoutWidget { monitorID: bar.modelData.name }
                 }
-                ClockWidget {}
+
+                Item { Layout.fillWidth: true }
+
             }
         }
     }

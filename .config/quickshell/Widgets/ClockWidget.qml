@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import "../"
+import "../Services"
 
 Rectangle {
     id: clock

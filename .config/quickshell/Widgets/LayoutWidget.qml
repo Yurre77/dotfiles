@@ -7,7 +7,7 @@ import "../"
 Rectangle {
     id: layoutblock
 
-    property color backgroundColor: Colors.bg
+    property color backgroundColor: "transparent"
     property color textColor: Colors.fg
     property int margin: 5
     property int radiusPixels: 5
